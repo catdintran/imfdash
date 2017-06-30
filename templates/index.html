@@ -39,7 +39,7 @@
       
       
     <!-- Map -->  
-    <div class="col-xs-7 col-md-3">
+    <div class="col-xs-6 col-md-4">
        <div class="chart-wrapper">
               <div class="chart-title">
                 World Map
@@ -159,19 +159,8 @@ new Datamap({
 		});    
 	  }
 	});
-	
     
-/* DataMaps */    
-/* 
-var map = L.map('datamap');
-var breweryMarkers = new L.FeatureGroup();
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-  id: '<your id here>',
-  accessToken: '<your token here>',
-  maxZoom: 16
-} ).addTo(map);
-*/
 
 /* Parse JSON file, create charts, draw markers on map */
 d3.json('./static/data/untappd.json', function (error, data) {
