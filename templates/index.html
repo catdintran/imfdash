@@ -196,10 +196,10 @@ function call_dc(data){
   /* General Government Fin Health  */
 	var gov_fin = dc.compositeChart('#gov_finance');
 	var gov_fin_dim = ndx.dimension(function(d) {  return d.general_government_revenue.year }),
-	revenue = dim.group().reduceSum(function(d) {    return d.general_government_revenue.val ; }),
-	expenditure = dim.group().reduceSum(function(d) {    return d.general_government_total_expenditure.val ; }),
-	net_lend_borrow = dim.group().reduceSum(function(d) {    return d.general_government_net_lendingborrowing.val ; }),
- 	gross_debt = dim.group().reduceSum(function(d) {    return d.general_government_gross_debt.val ; });
+	revenue = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_revenue.val ; }),
+	expenditure = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_total_expenditure.val ; }),
+	net_lend_borrow = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_net_lendingborrowing.val ; }),
+ 	gross_debt = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_gross_debt.val ; });
   	
 	gov_fin
 		.x(d3.scale.linear().domain([1978,2020]))
