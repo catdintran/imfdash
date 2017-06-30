@@ -148,8 +148,8 @@ new Datamap({
 			   $("#gdp").css({"font-size":"25px","color":"#777", "float" : "right"});
 			$("#ppp").text('$ ' +gdps[geography.id]['gross domestic product based on purchasing-power-parity (ppp) valuation of country gdp']);
 			   $("#ppp").css({"font-size":"25px","color":"#777", "float" : "right"});	
-			data = imf[geography.id.subject];
-			call_dc(data);
+			data = imf[geography.id];
+			call_dc(data.subject);
 			
 			dc.renderAll();
 				
