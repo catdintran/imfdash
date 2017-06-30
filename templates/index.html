@@ -23,25 +23,24 @@
 <br/>
 <div class="container-fluid">  
 
-  <div class="row" id="control-row">
-    
-    <div class="col-xs-3 col-md-6">      		
-      		<h4>General Government Finance <small><a id="day">reset</a></small></h4>
-      <div id="gov_finance" class="dc-chart"></div>
+    <div class="row" id="control-row">    
+    	 <div class="col-xs-3 col-md-4">      		
+      		<h4>General Government Finance</h4>
+      		<div id="gov_finance" class="dc-chart"></div>
+	 </div>	
+	 <div class="col-xs-3 col-md-3">      		
+      		<h4>Years</h4>
+      		<div id="gov_fin_years" class="dc-chart"></div>
+	 </div>	
     </div>
       
       
     <!-- Map -->  
-    <div class="col-xs-6 col-md-3">
-       <div class="chart-wrapper">
-              <div class="chart-title">
-                World Map
-              </div>
-              <div class="chart-stage">
-                <div id="us-chart"></div>
-                <div id="datamap" style="background-color: lightblue;position: relative; width: 100%; height: 300px;"></div>
-              </div>
-        </div>          
+    <div class="col-xs-6 col-md-5">
+                     
+       <div id="datamap" style="background-color: #3F4C59;position: relative; width: 100%; height: 300px;"></div>
+        
+	  </div>            
   </div>
                                                         <!-- 2nd row -->  
   <div class="row">
@@ -124,11 +123,11 @@ new Datamap({
 	    fills: { defaultFill: '#F5F5F5' },
 	   
 	    geographyConfig: {
-	        borderColor: '#DEDEDE',
-	        highlightBorderWidth: 2,
+	        borderColor: '#CSC1C0',
+	        highlightBorderWidth: 1,
 	        
 	        // only change border
-	        highlightBorderColor: '#B7B7B7',		
+	        highlightBorderColor: '#F7C331',		
 		    
 	        // show desired information in tooltip
 	        popupTemplate: function(geo, data) {
@@ -191,7 +190,14 @@ function call_dc(data){
 		.mouseZoomable(true)
 		.brushOn(true)
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5)); 
-
+	
+   var years_pie = dc.pieChart('#gov_fin_years');
+	gov_fin_grp = gov_fin_dim.group().reduceSum(function(d) {return d.general_government_revenue + d.general_government_total_expenditure + d.general_government_net_lendingborrowing + d.general_government_gross_debt;});
+   	years_pie.width(150).height(150)
+			.dimension(gov_fin_dim)
+   			.group(gov_fin_grp)
+			.innerRadius(10); 
+	
    var gdp_bar = dc.barChart('#gdp_bar');
 	gdp_dim = ndx.dimension(dc.pluck('year')),
 	gdp_grp = gdp_dim.group().reduceSum(dc.pluck('gross_domestic_product__current_prices'));
@@ -221,6 +227,9 @@ function call_dc(data){
 		.dimension(pop_dim)
 		.group(pop_grp)
 		.margins({top: 10, right: 20, bottom: 50, left: 50});
+	
+   	
+  
 	/*	
 
 
