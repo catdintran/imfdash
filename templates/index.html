@@ -197,7 +197,7 @@ function call_dc(data){
 	gdp_grp = gdp_dim.group().reduceSum(dc.pluck('gross_domestic_product__current_prices'));
 	
 	gdp_bar.width(300).height(180)
-		.x(d3.scale.linear().domain([1998,2020]))
+		.x(d3.scale.linear().domain([1998, 2005, 2010, 2015, 2020]))
 		.brushOn(false)
 		.yAxisLabel("GDP current")
 		.dimension(gdp_dim)
@@ -208,7 +208,7 @@ function call_dc(data){
 	pop_grp = pop_dim.group().reduceSum(dc.pluck('population'));
 	
 	population_bar.width(300).height(180)
-		.x(d3.scale.linear().domain([1998,2020]))
+		.x(d3.scale.linear().domain([1998, 2005, 2010, 2015, 2020]))
 		.brushOn(false)
 		.yAxisLabel("Population")
 		.dimension(pop_dim)
