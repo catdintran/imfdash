@@ -185,12 +185,13 @@ function call_dc(data){
 		.renderArea(true)
 		.x(d3.scale.linear().domain([1999,2020]))
 		.yAxisLabel("% of GDP")
-		.mouseZoomable(true)		
+		.mouseZoomable(true)
+		.brushOn(false)
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5)); 
 	
    var years_pie = dc.pieChart('#gov_fin_years');
 	gov_fin_grp = gov_fin_dim.group().reduceSum(function(d) {return d.general_government_revenue + d.general_government_total_expenditure + d.general_government_net_lendingborrowing + d.general_government_gross_debt;});
-   	years_pie.width(150).height(150)
+   	years_pie.width(130).height(130)
 			.dimension(gov_fin_dim)
    			.group(gov_fin_grp)
 			.innerRadius(10); 
