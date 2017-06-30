@@ -121,6 +121,7 @@
 <script src="./static/js/datamaps.world.min.js?v={{version}}"></script>    
 <script type="text/javascript">
 
+var data;	
 /* DataMaps */    
 new Datamap({
 	    element: document.getElementById('datamap'),
@@ -153,7 +154,9 @@ new Datamap({
 			   $("#gdp").css({"font-size":"25px","color":"#777", "float" : "right"});
 			$("#ppp").text('$ ' +gdps[geography.id]['gross domestic product based on purchasing-power-parity (ppp) valuation of country gdp']);
 			   $("#ppp").css({"font-size":"25px","color":"#777", "float" : "right"});	
-						
+			data = imf[geography.id];
+			
+			console.log(data);
 			dc.renderAll();
 				
 		});    
