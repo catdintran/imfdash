@@ -46,10 +46,10 @@
                                                         <!-- 2nd row -->  
   <div class="row">
     <div class="col-xs-6 col-md-3">
-      <div class="dc-chart" id="chart-rating-count"></div>
+      <div class="dc-chart" id="gdp_bar"></div>
     </div>
     <div class="col-xs-6 col-md-3">
-      <div class="dc-chart" id="chart-community-rating-count"></div>
+      <div class="dc-chart" id="population_bar"></div>
     </div>
       
       <!-- countryName -->
@@ -171,7 +171,6 @@ function call_dc(data){
 
   // set crossfilter
   var ndx = crossfilter(imf);
-  console.log(JSON.stringify(imf));	
   /* General Government Fin Health  */
 	var gov_fin = dc.lineChart('#gov_finance');
 	var gov_fin_dim = ndx.dimension(dc.pluck('year')),
@@ -192,7 +191,31 @@ function call_dc(data){
 		.mouseZoomable(true)
 		.brushOn(true)
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5)); 
-/*	
+
+   var gdp_bar = dc.barChart('#gdp_bar');
+	gdp_dim = ndx.dimension(dc.pluck('year')),
+	gdp_grp = gdp_dim.group().reduceSum(dc.pluck('gross_domestic_product__current_prices'));
+	
+	gdp_bar.width(300).height(180)
+		.x(d3.scale.linear().domain([1998,2020]))
+		.brushOn(false)
+		.yAxisLabel("GDP current")
+		.dimension(gdp_dim)
+		.group(gdp_grp);
+		
+   var population_bar = dc.barChart('#population_bar');
+	pop_dim = ndx.dimension(dc.pluck('year')),
+	pop_grp = pop_dim.group().reduceSum(dc.pluck('population'));
+	
+	gdp_bar.width(300).height(180)
+		.x(d3.scale.linear().domain([1998,2020]))
+		.brushOn(false)
+		.yAxisLabel("Population")
+		.dimension(pop_dim)
+		.group(pop_grp);
+	/*	
+
+
   // create dimensions (x-axis values)
   var yearDim  = ndx.dimension(function(d) {return d.first_had_year;}),
       // dc.pluck: short-hand for same kind of anon. function we used for yearDim
