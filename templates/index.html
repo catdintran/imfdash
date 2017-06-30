@@ -197,9 +197,13 @@ function call_dc(data){
 	gdp_grp = gdp_dim.group().reduceSum(dc.pluck('gross_domestic_product__current_prices'));
 	
 	gdp_bar.width(300).height(180)
-		.x(d3.scale.linear().domain([1998, 2005, 2010, 2015, 2020]))
+		.x(d3.scale.linear().domain([1998, 2020]))
+		.elasticY(true)
+		.barPadding(5)
+      		.centerBar(true)
 		.brushOn(false)
-		.yAxisLabel("GDP current")
+		.xAxisLabel("GDP current")
+		.yAxisLabel('U.S dollar Billions')
 		.dimension(gdp_dim)
 		.group(gdp_grp);
 		
@@ -208,9 +212,13 @@ function call_dc(data){
 	pop_grp = pop_dim.group().reduceSum(dc.pluck('population'));
 	
 	population_bar.width(300).height(180)
-		.x(d3.scale.linear().domain([1998, 2005, 2010, 2015, 2020]))
+		.x(d3.scale.linear().domain([1998, 2020]))
+		.elasticY(true)
+      		.centerBar(true)
+		.barPadding(5)
 		.brushOn(false)
-		.yAxisLabel("Population")
+		.xAxisLabel("Population")
+		.yAxisLabel('Millions')
 		.dimension(pop_dim)
 		.group(pop_grp);
 	/*	
