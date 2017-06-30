@@ -207,7 +207,7 @@ function call_dc(data){
 	pop_dim = ndx.dimension(dc.pluck('year')),
 	pop_grp = pop_dim.group().reduceSum(dc.pluck('population'));
 	
-	gdp_bar.width(300).height(180)
+	population_bar.width(300).height(180)
 		.x(d3.scale.linear().domain([1998,2020]))
 		.brushOn(false)
 		.yAxisLabel("Population")
