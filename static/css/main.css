@@ -15,10 +15,11 @@
 .dc-chart .axis text{
   font-size: 12px;
 }
-
-text {
-  font-size: 16px;
+.dc-chart text {
   color: #FFFFFF;
+}
+text {
+  font-size: 16px;  
 }
 
 #map {
