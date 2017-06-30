@@ -168,64 +168,28 @@ function call_dc(data){
   var yearFormat = d3.time.format('%Y');
   var monthFormat = d3.time.format('%b');
   var dayOfWeekFormat = d3.time.format('%a');
-/*
-  // normalize/parse data so dc can correctly sort & bin them
-  // I like to think of each "d" as a row in a spreadsheet
-  _.each(imf, function(d) {
-    d.mean_government = 
-    // round to nearest 0.25
-    d.rating_score = Math.round(+d.rating_score * 4) / 4;
-    d.beer.rating_score = Math.round(+d.beer.rating_score *4) / 4;
-    // round to nearest 0.5
-    d.beer.beer_abv = Math.round(+d.beer.beer_abv * 2) / 2;
-    // round to nearest 10
-    d.beer.beer_ibu = Math.floor(+d.beer.beer_ibu / 10) * 10;
 
-    d.first_had_dt = fullDateFormat.parse(d.first_had);
-    d.first_had_year = +yearFormat(d.first_had_dt);
-    d.first_had_month = monthFormat(d.first_had_dt);
-    d.first_had_day = dayOfWeekFormat(d.first_had_dt);
-  });
-*/
   // set crossfilter
   var ndx = crossfilter(imf);
   console.log(JSON.stringify(imf));	
   /* General Government Fin Health  */
-	var gov_fin = dc.compositeChart('#gov_finance');
-	var gov_fin_dim = ndx.dimension(function(d) {  return d.general_government_revenue.year }),
-	revenue = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_revenue.val ; }),
-	expenditure = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_total_expenditure.val ; }),
-	net_lend_borrow = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_net_lendingborrowing.val ; }),
- 	gross_debt = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_gross_debt.val ; });
+	var gov_fin = dc.lineChart('#gov_finance');
+	var gov_fin_dim = ndx.dimension(dc.pluck('year')),
+	revenue = gov_fin_dim.group().reduceSum(dc.pluck('general_government_revenue')),
+	expenditure = gov_fin_dim.group().reduceSum(dc.pluck('general_government_total_expenditure')),
+	net_lend_borrow = gov_fin_dim.group().reduceSum(dc.pluck('general_government_net_lendingborrowing')),
+ 	gross_debt = gov_fin_dim.group().reduceSum(dc.pluck('general_government_gross_debt'));
   	
 	gov_fin.width('580').height('300')
-		.x(d3.scale.linear().domain([1978,2020]))
-  		.yAxisLabel("% of GDP")
-		.legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
-		.renderHorizontalGridLines(true)
-		.compose([
-			dc.lineChart(gov_fin)
-				.dimension(gov_fin_dim)
-				.colors('green')
-				.group(revenue, "General Government Revenue"),
-			//	.dashStyle([2,2]),
-			dc.lineChart(gov_fin)
-				.dimension(gov_fin_dim)
-				.colors('red')
-				.group(expenditure, "General Government Total Expense")
-				.dashStyle([3,3]),
-			dc.lineChart(gov_fin)
-				.dimension(gov_fin_dim)
-				.colors('pink')
-				.group(net_lend_borrow, "General Government Net Lend/Borrow")
-				.dashStyle([4,4]),
-			dc.lineChart(gov_fin)
-				.dimension(gov_fin_dim)
-				.colors('black')
-				.group(gross_debt, "General Government Gross Debt")
-			//	.dashStyle([5,5])	
-			])
-		.brushOn(false);
+		.dimension(gov_fin_dim)
+		.group(revenue, 'General Government Revenue')
+		.stack(expenditure, 'General Total Expenditure')
+		.stack(net_lend_borrow, 'General Net Lend/Borrow')
+		.stack(gross_debt, 'General Gross Debt')
+		.renderArea(true)
+		.x(d3.scale.linear().domain([1999,2020]))
+		.brushOn(true)
+		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5)); 
 /*	
   // create dimensions (x-axis values)
   var yearDim  = ndx.dimension(function(d) {return d.first_had_year;}),
