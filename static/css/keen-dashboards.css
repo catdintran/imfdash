@@ -2,9 +2,7 @@
 /*
  * Full-page application style
  */
-body{
- color: #d2d0d0; 
-}  
+
 body.application {
   background: #f2f2f2;
   padding: 60px 20px 0;
