@@ -188,6 +188,8 @@ function call_dc(data){
 		.stack(gross_debt, 'General Gross Debt')
 		.renderArea(true)
 		.x(d3.scale.linear().domain([1999,2020]))
+		.yAxisLabel("% of GDP")
+		.mouseZoomable(true)
 		.brushOn(true)
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5)); 
 /*	
