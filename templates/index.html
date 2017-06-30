@@ -24,11 +24,8 @@
 <div class="container-fluid">  
 
   <div class="row" id="control-row">
-    <div class="col-xs-2 pie-chart">
-      		<h4>Year <small><a id="year">reset</a></small></h4>
-      <div class="dc-chart" id="chart-ring-year"></div>
-    </div>
-    <div class="col-xs-3 pie-chart">      		
+    
+    <div class="col-xs-3 col-md-6">      		
       		<h4>General Government Finance <small><a id="day">reset</a></small></h4>
       <div id="gov_finance" class="dc-chart"></div>
     </div>
@@ -201,7 +198,7 @@ function call_dc(data){
 	net_lend_borrow = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_net_lendingborrowing.val ; }),
  	gross_debt = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_gross_debt.val ; });
   	
-	gov_fin
+	gov_fin.width('100%')
 		.x(d3.scale.linear().domain([1978,2020]))
   		.yAxisLabel("% of GDP")
 		.legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
@@ -219,7 +216,7 @@ function call_dc(data){
 				.dashStyle([3,3]),
 			dc.lineChart(gov_fin)
 				.dimension(gov_fin_dim)
-				.colors('yellow')
+				.colors('pink')
 				.group(net_lend_borrow, "General Government Net Lend/Borrow")
 				.dashStyle([4,4]),
 			dc.lineChart(gov_fin)
