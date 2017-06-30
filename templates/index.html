@@ -28,18 +28,14 @@
       		<h4>Year <small><a id="year">reset</a></small></h4>
       <div class="dc-chart" id="chart-ring-year"></div>
     </div>
-    <div class="col-xs-2 pie-chart">
-      		<h4>Month <small><a id="month" href="#">reset</a></small></h4>
-      <div class="dc-chart" id="chart-ring-month"></div>
-    </div>
-    <div class="col-xs-2 pie-chart">
+    <div class="col-xs-3 pie-chart">      		
       		<h4>Day <small><a id="day">reset</a></small></h4>
-      <div id="chart-ring-day" class="dc-chart"></div>
+      <div id="gov_finance" class="dc-chart"></div>
     </div>
       
       
     <!-- Map -->  
-    <div class="col-xs-6 col-md-4">
+    <div class="col-xs-6 col-md-3">
        <div class="chart-wrapper">
               <div class="chart-title">
                 World Map
@@ -157,7 +153,6 @@ new Datamap({
 			   $("#ppp").css({"font-size":"25px","color":"#777", "float" : "right"});	
 			data = imf[geography.id];
 			
-			console.log(data);
 			dc.renderAll();
 				
 		});    
@@ -167,18 +162,18 @@ new Datamap({
 
 
 /* Parse JSON file, create charts, draw markers on map */
-d3.json('./static/data/untappd.json', function (error, data) {
-  var beerData = data.response.beers.items;
+d3.json(data, function (error, data) {
+  var imf = data;
 
   var fullDateFormat = d3.time.format('%a, %d %b %Y %X %Z');
   var yearFormat = d3.time.format('%Y');
   var monthFormat = d3.time.format('%b');
   var dayOfWeekFormat = d3.time.format('%a');
-
+/*
   // normalize/parse data so dc can correctly sort & bin them
   // I like to think of each "d" as a row in a spreadsheet
-  _.each(beerData, function(d) {
-    d.count = +d.count;
+  _.each(imf, function(d) {
+    d.mean_government = 
     // round to nearest 0.25
     d.rating_score = Math.round(+d.rating_score * 4) / 4;
     d.beer.rating_score = Math.round(+d.beer.rating_score *4) / 4;
@@ -192,10 +187,47 @@ d3.json('./static/data/untappd.json', function (error, data) {
     d.first_had_month = monthFormat(d.first_had_dt);
     d.first_had_day = dayOfWeekFormat(d.first_had_dt);
   });
-
+*/
   // set crossfilter
-  var ndx = crossfilter(beerData);
-
+  var ndx = crossfilter(imf);
+	
+  /* General Government Fin Health  */
+	var gov_fin = dc.compositeChart('#gov_finance');
+	var gov_fin_dim = ndx.dimension(function(d) {  return d.general_government_revenue.year }),
+	revenue = dim.group().reduceSum(function(d) {    return d.general_government_revenue.val ; }),
+	expenditure = dim.group().reduceSum(function(d) {    return d.general_government_total_expenditure.val ; }),
+	net_lend_borrow = dim.group().reduceSum(function(d) {    return d.general_government_net_lendingborrowing.val ; }),
+ 	gross_debt = dim.group().reduceSum(function(d) {    return d.general_government_gross_debt.val ; });
+  	
+	gov_fin
+		.x(d3.scale.linear().domain([1978,2020]))
+  		.yAxisLabel("% of GDP")
+		.legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+		.renderHorizontalGridLines(true)
+		.compose([
+			dc.lineChart(gov_fin)
+				.dimension(gov_fin_dim)
+				.colors('green')
+				.group(revenue, "General Government Revenue"),
+			//	.dashStyle([2,2]),
+			dc.lineChart(gov_fin)
+				.dimension(gov_fin_dim)
+				.colors('red')
+				.group(expenditure, "General Government Total Expense")
+				.dashStyle([3,3]),
+			dc.lineChart(gov_fin)
+				.dimension(gov_fin_dim)
+				.colors('yellow')
+				.group(net_lend_borrow, "General Government Net Lend/Borrow")
+				.dashStyle([4,4]),
+			dc.lineChart(gov_fin)
+				.dimension(gov_fin_dim)
+				.colors('black')
+				.group(gross_debt, "General Government Gross Debt")
+			//	.dashStyle([5,5])	
+			])
+		.brushOn(false);
+/*	
   // create dimensions (x-axis values)
   var yearDim  = ndx.dimension(function(d) {return d.first_had_year;}),
       // dc.pluck: short-hand for same kind of anon. function we used for yearDim
@@ -376,7 +408,7 @@ d3.json('./static/data/untappd.json', function (error, data) {
     dayChart.filterAll();
     dc.redrawAll();
   });
-
+*/
   // showtime!
   dc.renderAll();
 
