@@ -198,7 +198,7 @@ function call_dc(data){
 	net_lend_borrow = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_net_lendingborrowing.val ; }),
  	gross_debt = gov_fin_dim.group().reduceSum(function(d) {    return d.general_government_gross_debt.val ; });
   	
-	gov_fin.width('100%')
+	gov_fin.width('500').height('300')
 		.x(d3.scale.linear().domain([1978,2020]))
   		.yAxisLabel("% of GDP")
 		.legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
