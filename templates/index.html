@@ -176,7 +176,7 @@ function call_dc(data){
 	net_lend_borrow = gov_fin_dim.group().reduceSum(dc.pluck('general_government_net_lendingborrowing')),
  	gross_debt = gov_fin_dim.group().reduceSum(dc.pluck('general_government_gross_debt'));
   	
-	gov_fin.width('500').height('300')
+	gov_fin.width('400').height('250')
 		.dimension(gov_fin_dim)
 		.group(revenue, 'General Government Revenue')
 		.stack(expenditure, 'General Total Expenditure')
@@ -185,8 +185,7 @@ function call_dc(data){
 		.renderArea(true)
 		.x(d3.scale.linear().domain([1999,2020]))
 		.yAxisLabel("% of GDP")
-		.mouseZoomable(true)
-		.brushOn(true)
+		.mouseZoomable(true)		
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5)); 
 	
    var years_pie = dc.pieChart('#gov_fin_years');
@@ -200,7 +199,7 @@ function call_dc(data){
 	gdp_dim = ndx.dimension(dc.pluck('year')),
 	gdp_grp = gdp_dim.group().reduceSum(dc.pluck('gross_domestic_product__current_prices'));
 	
-	gdp_bar.width(300).height(180)
+	gdp_bar.width(200).height(180)
 		.x(d3.scale.linear().domain([1998, 2020]))
 		.elasticY(true)
       		.centerBar(true)
@@ -215,7 +214,7 @@ function call_dc(data){
 	pop_dim = ndx.dimension(dc.pluck('year')),
 	pop_grp = pop_dim.group().reduceSum(dc.pluck('population'));
 	
-	population_bar.width(300).height(180)
+	population_bar.width(200).height(180)
 		.x(d3.scale.linear().domain([1998, 2020]))
 		.elasticY(true)
       		.centerBar(true)
