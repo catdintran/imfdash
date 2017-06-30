@@ -152,6 +152,7 @@ new Datamap({
 			$("#ppp").text('$ ' +gdps[geography.id]['gross domestic product based on purchasing-power-parity (ppp) valuation of country gdp']);
 			   $("#ppp").css({"font-size":"25px","color":"#777", "float" : "right"});	
 			data = imf[geography.id];
+			call_dc(data);
 			
 			dc.renderAll();
 				
@@ -162,7 +163,8 @@ new Datamap({
 
 
 /* Parse JSON file, create charts, draw markers on map */
-d3.json(data, function (error, data) {
+//d3.json(data, function (error, data) {
+function call_dc(data){
   var imf = data;
 
   var fullDateFormat = d3.time.format('%a, %d %b %Y %X %Z');
@@ -412,7 +414,7 @@ d3.json(data, function (error, data) {
   // showtime!
   dc.renderAll();
 
-});
+}
 
 </script>
 </body></html>
