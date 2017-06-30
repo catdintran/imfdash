@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>dc.js example - Untappd Data Visualization</title>
+    <title>Econ Global 2017</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./static/css/dc.css">
     <link rel="stylesheet" href="./static/css/leaflet.css">
@@ -72,12 +72,25 @@
           </div>
         </div>
       </div> 
-      
-    
-      
-      
+      <!-- Metric 1 -->
+
+      <!-- Metric 2 -->
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            2017 Purchase Power Parity in Billions
+          </div>
+          <div class="chart-stage">
+            
+            <div id="ppp"></div>
+        <!--        <div id="total-donations-nd"></div> -->
+          </div>
+        </div>
+      </div>
+      <!-- Metric 2 -->     
       
   </div>
+    
   <div class="row">
     <div class="col-xs-12">
       <table class="table table-bordered table-striped" id="data-table">
@@ -101,6 +114,10 @@
 <script src="./static/js/dc.js"></script>
 <script src="./static/js/leaflet.js"></script>
 <script src="./static/js/underscore-min.js"></script>
+  <!-- dataMap --> 
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+<script src="./static/js/datamaps.world.min.js?v={{version}}"></script>    
 <script type="text/javascript">
 
 /* instantiate and configure map */
