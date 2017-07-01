@@ -187,18 +187,28 @@ function call_dc(data){
 	net_lend_borrow = gov_fin_dim.group().reduceSum(dc.pluck('general_government_net_lendingborrowing')),
  	gross_debt = gov_fin_dim.group().reduceSum(dc.pluck('general_government_gross_debt'));
   	
-	gov_fin.width('350').height('200')
-		.dimension(gov_fin_dim)
-		.group(revenue, 'General Government Revenue')
-		.stack(expenditure, 'General Total Expenditure')
-		.stack(net_lend_borrow, 'General Net Lend/Borrow')
-		.stack(gross_debt, 'General Gross Debt')
-		.renderArea(true)
+	gov_fin.width('350').height('200').renderHorizontalGridLines(true)	
 		.x(d3.scale.linear().domain([2005,2020]))
-		.yAxisLabel("% of GDP")
-		.mouseZoomable(true)
-		.brushOn(false)
-		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5));
+		.yAxisLabel("% of GDP")		
+		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5))
+		.transitionDuration(500)
+		.elasticY(true)
+		.brushOn(false)		
+		.compose([
+			dc.lineChart(gov_fin).group(revenue, 'General Government Revenue')
+						.dimension(gov_fin_dim)
+						.colors('#2ECC71'),						
+			dc.lineChart(gov_fin).group(expenditure, 'General Total Expenditure')
+						.dimension(gov_fin_dim)
+						.colors('#EC7063'),
+			dc.lineChart(gov_fin).group(net_lend_borrow, 'General Net Lend/Borrow')
+						.dimension(gov_fin_dim)
+						.colors('#5DADE2'),						
+			dc.lineChart(gov_fin).group(gross_debt, 'General Gross Debt')
+						.dimension(gov_fin_dim)
+						.colors('#17202A')			
+    		]);
+	
   /* Invest + Save  */	
 	var investment = dc.compositeChart('#investment');
 	var invest_dim = ndx.dimension(dc.pluck('year')),
@@ -216,11 +226,11 @@ function call_dc(data){
 		.compose([
 			dc.lineChart(investment).group(savings, 'Gross National Savings')
 						.dimension(invest_dim)
-						.colors('#ABEBC6'),
+						.colors('#73C6B6'),
 						
 			dc.lineChart(investment).group(invest, 'Total Investment')
 						.dimension(invest_dim)
-						.colors('#F9E79F')
+						.colors('#F8C471')
 						
 			
     		]);
