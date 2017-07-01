@@ -1,4 +1,5 @@
 function fis2017(map) {
+    $('#map_legend').show();
     /*
     {'BEL': 'Tax policy Adjustment',
      'GRC': 'Fiscal Risk',
@@ -16,6 +17,7 @@ function fis2017(map) {
 
 }
 function fis2016(map) {
+    $('#map_legend').show();
      /*
     {'AGO': 'Fiscal Consolidation',
  'ALB': 'Tax policy Adjustment',
@@ -87,6 +89,7 @@ function fis2016(map) {
 
 }
 function fis2015(map) {
+    $('#map_legend').show();
     /*
    {'AFG': 'Fiscal Consolidation',
  'BEL': 'Fiscal Consolidation',
