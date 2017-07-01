@@ -297,7 +297,7 @@ function call_dc(data){
 		.dimension(gdp_dim)
 		.group(gdp_grp)
 		.colors('#117A65')
-		.centerBar(true);
+		.renderHorizontalGridLines(true);
 		
    var population_bar = dc.barChart('#population_bar');
 	pop_dim = ndx.dimension(dc.pluck('year')),
@@ -313,7 +313,7 @@ function call_dc(data){
 		.dimension(pop_dim)
 		.group(pop_grp)
 		.colors('#117A65')
-		.margins({top: 10, right: 20, bottom: 50, left: 50});
+		.renderHorizontalGridLines(true);
 	
    	
   
