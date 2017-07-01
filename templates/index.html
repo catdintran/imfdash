@@ -45,10 +45,12 @@
 					<!-- 2nd row -->  
   <div class="row">
 	    <div class="col-xs-3 col-md-3">
-	      <div class="dc-chart" id="gdp_bar"></div>
+	      	<text>GDP Current</text>	    
+	      	<div class="dc-chart" id="gdp_bar"></div>
 	    </div>
 	    <div class="col-xs-3 col-md-3">
-	      <div class="dc-chart" id="population_bar"></div>
+		<text>Population</text>	    
+	      	<div class="dc-chart" id="population_bar"></div>
 	    </div>
       
       <!-- countryName -->
@@ -251,11 +253,12 @@ function call_dc(data){
 		.elasticY(true)
       		.centerBar(true)
 		.brushOn(false)
-		.xAxisLabel("GDP current")
+//		.xAxisLabel("GDP current")
 		.yAxisLabel('U.S dollar Billions')
 		.dimension(gdp_dim)
 		.group(gdp_grp)
-		.colors('#D2B4DE')
+		.colors('#A9CCE3')
+		.margins({top: 15, right: 10, bottom: 20, left: 40})
 		.margins({top: 10, right: 20, bottom: 50, left: 50});
 		
    var population_bar = dc.barChart('#population_bar');
@@ -267,11 +270,11 @@ function call_dc(data){
 		.elasticY(true)
       		.centerBar(true)
 		.brushOn(false)
-		.xAxisLabel("Population")
+//		.xAxisLabel("Population")
 		.yAxisLabel('Millions')
 		.dimension(pop_dim)
 		.group(pop_grp)
-		.colors('#D2B4DE')
+		.colors('#A9CCE3')
 		.margins({top: 10, right: 20, bottom: 50, left: 50});
 	
    	
