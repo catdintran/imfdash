@@ -215,11 +215,13 @@ function call_dc(data){
 		.brushOn(false)		
 		.compose([
 			dc.lineChart(investment).group(savings, 'Gross National Savings')
+						.dimension(invest_dim)
 						.colors('#ABEBC6')
 						.valueAccessor(function (d) {
 							return d.gross_national_savings;
 						 }),
 			dc.lineChart(investment).group(invest, 'Total Investment')
+						.dimension(invest_dim)
 						.colors('#F9E79F')
 						.valueAccessor(function (d) {
 							return d.total_investment;
