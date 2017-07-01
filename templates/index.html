@@ -187,7 +187,7 @@ function call_dc(data){
 	net_lend_borrow = gov_fin_dim.group().reduceSum(dc.pluck('general_government_net_lendingborrowing')),
  	gross_debt = gov_fin_dim.group().reduceSum(dc.pluck('general_government_gross_debt'));
   	
-	gov_fin.width('400').height('250')
+	gov_fin.width('350').height('200')
 		.dimension(gov_fin_dim)
 		.group(revenue, 'General Government Revenue')
 		.stack(expenditure, 'General Total Expenditure')
@@ -205,11 +205,8 @@ function call_dc(data){
 	    savings =    invest_dim.group().reduceSum(dc.pluck('gross_national_savings')),
 	    invest =    invest_dim.group().reduceSum(dc.pluck('total_investment'));
 	
-	investment.width('400').height('250')
-		.dimension(invest_dim)
-	//	.group(savings, 'Gross National Savings')
-	//	.stack(invest, 'Total Investment')		
-	//	.renderArea(true)
+	investment.width('350').height('200')
+		.dimension(invest_dim)	
 		.x(d3.scale.linear().domain([2005,2020]))
 		.yAxisLabel("% of GDP")		
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5))
