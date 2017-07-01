@@ -207,7 +207,7 @@ function call_dc(data){
 	
 	investment.width('400').height('250')
 		.dimension(invest_dim)
-		.group(savings, 'Gross National Savings')
+	//	.group(savings, 'Gross National Savings')
 	//	.stack(invest, 'Total Investment')		
 	//	.renderArea(true)
 		.x(d3.scale.linear().domain([2005,2020]))
@@ -215,13 +215,18 @@ function call_dc(data){
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5))
 		.transitionDuration(500)
 		.elasticY(true)
-		.brushOn(false)
-		.valueAccessor(function (d) {
-			return d.value;
-		 })
+		.brushOn(false)		
 		.compose([
-			dc.lineChart(investment).group(savings),
-			dc.lineChart(investment).group(invest)
+			dc.lineChart(investment).group(savings, 'Gross National Savings')
+						.colors('#ABEBC6')
+						.valueAccessor(function (d) {
+							return d.gross_national_savings;
+						 }),
+			dc.lineChart(investment).group(invest, 'Total Investment')
+						.colors('#F9E79F')
+						.valueAccessor(function (d) {
+							return d.total_investment;
+						 })
 			
     		]);
 /*	
