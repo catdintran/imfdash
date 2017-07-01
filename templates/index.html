@@ -51,7 +51,7 @@ li a:hover:not(.active) {
   
   	<li style="float:right"><a class="active" >Fis2015</a></li>
 	<li style="float:right"><a class="active" >Fis2016</a></li>
-	<li style="float:right"><a class="active" onclick="fis2015()" >Fis2017</a></li>
+	<li style="float:right"><a class="active" onclick="fis2015(map)" >Fis2017</a></li>
 </ul>	
 <br/>
 	
@@ -163,7 +163,7 @@ li a:hover:not(.active) {
 var data;	
 call_dc(imf['USA']);	
 /* DataMaps */    
-new Datamap({
+var map = new Datamap({
 	    element: document.getElementById('datamap'),
 	    projection: 'mercator', // big world map
 	    // countries don't listed in dataset will be painted with this color
