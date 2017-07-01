@@ -27,11 +27,11 @@
 	
     <div class="row" id="control-row">    
     	 <div class="col-xs-3 col-md-3">      		
-      		<h6>General Government Finance</h6>
+      		<text>General Government Finance</text>
       		<div id="gov_finance" class="dc-chart"></div>
 	 </div>	
 	 <div class="col-xs-3 col-md-3">      		
-      		<h6>Saving+Invest</h6>
+      		<text>Saving+Invest</text>
       		<div id="investment" class="dc-chart"></div>
 	 </div>	
               
@@ -44,10 +44,10 @@
    </div>
 					<!-- 2nd row -->  
   <div class="row">
-	    <div class="col-xs-6 col-md-3">
+	    <div class="col-xs-3 col-md-3">
 	      <div class="dc-chart" id="gdp_bar"></div>
 	    </div>
-	    <div class="col-xs-6 col-md-3">
+	    <div class="col-xs-3 col-md-3">
 	      <div class="dc-chart" id="population_bar"></div>
 	    </div>
       
@@ -246,7 +246,7 @@ function call_dc(data){
 	gdp_dim = ndx.dimension(dc.pluck('year')),
 	gdp_grp = gdp_dim.group().reduceSum(dc.pluck('gross_domestic_product__current_prices'));
 	
-	gdp_bar.width(200).height(180)
+	gdp_bar.width(350).height(200)
 		.x(d3.scale.linear().domain([2005, 2020]))
 		.elasticY(true)
       		.centerBar(true)
@@ -255,13 +255,14 @@ function call_dc(data){
 		.yAxisLabel('U.S dollar Billions')
 		.dimension(gdp_dim)
 		.group(gdp_grp)
+		.colors('#D2B4DE')
 		.margins({top: 10, right: 20, bottom: 50, left: 50});
 		
    var population_bar = dc.barChart('#population_bar');
 	pop_dim = ndx.dimension(dc.pluck('year')),
 	pop_grp = pop_dim.group().reduceSum(dc.pluck('population'));
 	
-	population_bar.width(200).height(180)
+	population_bar.width(350).height(200)
 		.x(d3.scale.linear().domain([2005, 2020]))
 		.elasticY(true)
       		.centerBar(true)
@@ -270,6 +271,7 @@ function call_dc(data){
 		.yAxisLabel('Millions')
 		.dimension(pop_dim)
 		.group(pop_grp)
+		.colors('#D2B4DE')
 		.margins({top: 10, right: 20, bottom: 50, left: 50});
 	
    	
