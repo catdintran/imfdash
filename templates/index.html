@@ -180,14 +180,14 @@ function call_dc(data){
   var ndx = crossfilter(imf);
   var all = ndx.groupAll();	
   /* General Government Fin Health  */
-	var gov_fin = dc.lineChart('#gov_finance');
+	var gov_fin = dc.compositeChart('#gov_finance');
 	var gov_fin_dim = ndx.dimension(dc.pluck('year')),
 	revenue = gov_fin_dim.group().reduceSum(dc.pluck('general_government_revenue')),
 	expenditure = gov_fin_dim.group().reduceSum(dc.pluck('general_government_total_expenditure')),
 	net_lend_borrow = gov_fin_dim.group().reduceSum(dc.pluck('general_government_net_lendingborrowing')),
  	gross_debt = gov_fin_dim.group().reduceSum(dc.pluck('general_government_gross_debt'));
   	
-	gov_fin.width('350').height('200')	
+	gov_fin.width('350').height('200').renderHorizontalGridLines(true)	
 		.x(d3.scale.linear().domain([2005,2020]))
 		.yAxisLabel("% of GDP")		
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5))
@@ -215,7 +215,7 @@ function call_dc(data){
 	    savings =    invest_dim.group().reduceSum(dc.pluck('gross_national_savings')),
 	    invest =    invest_dim.group().reduceSum(dc.pluck('total_investment'));
 	
-	investment.width('350').height('200')
+	investment.width('350').height('200').renderHorizontalGridLines(true)
 		.dimension(invest_dim)	
 		.x(d3.scale.linear().domain([2005,2020]))
 		.yAxisLabel("% of GDP")		
