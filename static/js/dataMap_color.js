@@ -1,4 +1,5 @@
 function fis2015() {
+    $("#datamap").remove();
     var basic_choropleth = new Datamap({
       element: document.getElementById("datamap"),
       projection: 'mercator',
