@@ -9,8 +9,41 @@
     <link rel="stylesheet" href="./static/css/bootstrap.css?v={{version}}">
     <link rel="stylesheet" href="./static/css/main.css?v={{version}}">
     <link rel="stylesheet" href="./static/css/keen-dashboards.css?v={{version}}">
+	
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+</style>
+	
+	
 </head>
 <body style="background-color: #3F4C59;">
+<!--	
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid" style="background-color: black;">
       <div class="navbar-header">
@@ -18,9 +51,15 @@
       </div>
     </div>
 </div>
-<br/>
-<br/>
-<br/>
+-->
+<ul>
+	<li><a href="./"><b>Econ Global 2017</b></a></li>
+  
+  	<li style="float:right"><a class="active" >Fis2015</a></li>
+	<li style="float:right"><a class="active" >Fis2016</a></li>
+	<li style="float:right"><a class="active" >Fis2017</a></li>
+</ul>	
+	
 <div class="container-fluid"> 
 	
 	<button onclick="fis2015()">Fis2015</button>
