@@ -248,15 +248,15 @@ var map = new Datamap({
 			$('#countryName-container').text(geography.properties.name);
 			   $('#countryName-container').css({"font-size":"25px","color":"#fff", "text-align": "center", "background-color" : "#3d4a57" });
 			$("#gdp").text('$ ' +gdps[geography.id]['gross domestic product, current prices']);
-			   $("#gdp").css({"font-size":"25px","color":"#777", "float" : "right"});
+			   $("#gdp").css({"font-size":"25px","color":"#66BB6A", "float" : "right"});
 			$("#ppp").text('$ ' +gdps[geography.id]['gross domestic product based on purchasing-power-parity (ppp) valuation of country gdp']);
-			   $("#ppp").css({"font-size":"25px","color":"#777", "float" : "right"});
+			   $("#ppp").css({"font-size":"25px","color":"#66BB6A", "float" : "right"});
 			$("#country_region").text(gdps[geography.id]['region']);
-			   $("#country_region").css({"font-size":"25px","color":"#777", "float" : "right"});
+			   $("#country_region").css({"font-size":"25px","color":"#FFF176", "float" : "right"});
 			$("#country_income").text(gdps[geography.id]['income']);
-			   $("#country_income").css({"font-size":"25px","color":"#777", "float" : "right"});
+			   $("#country_income").css({"font-size":"25px","color":"white", "float" : "right"});
 			$("#oil_producer").text((gdps[geography.id]['oils'] === 'Oil Producing' ) ? 'True' : 'False');
-			   $("#oil_producer").css({"font-size":"25px","color":"#777", "float" : "right"});
+			   $("#oil_producer").css({"font-size":"25px","color":"#2196F3", "float" : "right"});
 			
 			
 			data = imf[geography.id];
