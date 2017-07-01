@@ -173,6 +173,8 @@ function call_dc(data){
   var yearFormat = d3.time.format('%Y');
   var monthFormat = d3.time.format('%b');
   var dayOfWeekFormat = d3.time.format('%a');
+	
+  var all = ndx.groupAll();	
 
   // set crossfilter
   var ndx = crossfilter(imf);
@@ -197,7 +199,7 @@ function call_dc(data){
 		.brushOn(false)
 		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5));
   /* Invest + Save  */	
-	var investment = dc.lineChart('#investment');
+	var investment = dc.compositeChart('#investment');
 	var invest_dim = ndx.dimension(dc.pluck('year')),
 	    savings =    invest_dim.group().reduceSum(dc.pluck('gross_national_savings')),
 	    invest =    invest_dim.group().reduceSum(dc.pluck('total_investment'));
@@ -205,13 +207,22 @@ function call_dc(data){
 	investment.width('400').height('250')
 		.dimension(invest_dim)
 		.group(savings, 'Gross National Savings')
-		.stack(invest, 'Total Investment')		
-		.renderArea(true)
+	//	.stack(invest, 'Total Investment')		
+	//	.renderArea(true)
 		.x(d3.scale.linear().domain([2005,2020]))
-		.yAxisLabel("% of GDP")
-		.mouseZoomable(true)
+		.yAxisLabel("% of GDP")		
+		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5))
+		.transitionDuration(500)
+		.elasticY(true)
 		.brushOn(false)
-		.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5));
+		.valueAccessor(function (d) {
+			return d.value;
+		 })
+		.compose([
+			dc.lineChart(investment).group(savings),
+			dc.lineChart(investment).group(invest)
+			
+    		]);
 /*	
    var years_pie = dc.pieChart('#gov_fin_years');
 	gov_fin_grp = gov_fin_dim.group().reduceSum(function(d) {return d.general_government_revenue + d.general_government_total_expenditure + d.general_government_net_lendingborrowing + d.general_government_gross_debt;});
