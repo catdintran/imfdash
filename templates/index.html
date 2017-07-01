@@ -219,7 +219,8 @@ li a:hover:not(.active) {
 var data;	
 call_dc(imf['USA']);
 	
-/* DataMaps */    
+/* DataMaps */
+var highlight = 'USA';
 var map = new Datamap({
 	    element: document.getElementById('datamap'),
 	    projection: 'mercator', // big world map
@@ -244,6 +245,7 @@ var map = new Datamap({
 	            datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 	        };
 		datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+			map.updateChoropleth({highlight: '#F5F5F5' }, {reset: true});   
 			var gdps = countries;
 			$('#countryName-container').text(geography.properties.name);
 			   $('#countryName-container').css({"font-size":"25px","color":"#fff", "text-align": "center", "background-color" : "#3d4a57" });
@@ -257,7 +259,8 @@ var map = new Datamap({
 			   $("#country_income").css({"font-size":"25px","color":"white", "float" : "right"});
 			$("#oil_producer").text((gdps[geography.id]['oils'] === 'Oil Producing' ) ? 'True' : 'False');
 			   $("#oil_producer").css({"font-size":"25px","color":"#2196F3", "float" : "right"});
-			
+			highlight = geography.id;
+			map.updateChoropleth({highlight: 'red' }, {reset: true});  
 			
 			data = imf[geography.id];
 			call_dc(data);
