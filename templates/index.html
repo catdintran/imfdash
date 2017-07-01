@@ -94,7 +94,7 @@ li a:hover:not(.active) {
 			<div class="dc-chart" id="gdp_bar"></div>
 	  </div>
 	  <div class="col-xs-3 col-md-3">
-			<text style="font-weight:lighter;">Population</text>	    
+			<text style="font-weight:lighter;">Unemployment rate</text>	    
 			<div class="dc-chart" id="population_bar"></div>
 	  </div>
 	  
@@ -312,7 +312,7 @@ function call_dc(data){
 		
    var population_bar = dc.barChart('#population_bar');
 	pop_dim = ndx.dimension(dc.pluck('year')),
-	pop_grp = pop_dim.group().reduceSum(dc.pluck('population'));
+	pop_grp = pop_dim.group().reduceSum(dc.pluck('unemployment_rate'));
 	
 	population_bar.width(350).height(200)
 		.x(d3.scale.linear().domain([2005, 2020]))
