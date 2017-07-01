@@ -199,8 +199,8 @@ function call_dc(data){
   /* Invest + Save  */	
 	var investment = dc.lineChart('#investment');
 	var invest_dim = ndx.dimension(dc.pluck('year')),
-	    savings =    invest_dim..group().reduceSum(dc.pluck('gross_national_savings')),
-	    invest =    invest_dim..group().reduceSum(dc.pluck('total_investment'));
+	    savings =    invest_dim.group().reduceSum(dc.pluck('gross_national_savings')),
+	    invest =    invest_dim.group().reduceSum(dc.pluck('total_investment'));
 	
 	investment.width('400').height('250')
 		.dimension(invest_dim)
