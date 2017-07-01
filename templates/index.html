@@ -174,10 +174,11 @@ function call_dc(data){
   var monthFormat = d3.time.format('%b');
   var dayOfWeekFormat = d3.time.format('%a');
 	
-  var all = ndx.groupAll();	
+  	
 
   // set crossfilter
   var ndx = crossfilter(imf);
+  var all = ndx.groupAll();	
   /* General Government Fin Health  */
 	var gov_fin = dc.lineChart('#gov_finance');
 	var gov_fin_dim = ndx.dimension(dc.pluck('year')),
