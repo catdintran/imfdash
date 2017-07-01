@@ -1,0 +1,11 @@
+#select from df where column1 = n OR column1 = n1
+fiscal2015 = data2015[(data2015.Fiscal == 'Fiscal Consolidation' ) | (cat.Fiscal == 'Expansionary Fiscal Pilocy') | (cat.Fiscal == 'Fiscal Risk') | (cat.Fiscal == 'Medium Term Fiscal Adjustment') | (cat.Fiscal == 'Tax policy Adjustment')]
+
+#select from df where column1 = n
+Risk = data.loc[data['Fiscal'] == 'Fiscal Risk']
+
+#concat multiple dfs
+newdf = pd.concat([df1, df2])
+
+# replace NaN 
+newdf = olddf.fillna(0)
