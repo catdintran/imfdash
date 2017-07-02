@@ -221,7 +221,7 @@ call_dc(imf['USA']);
 	
 /* DataMaps */
 var highlight = 'USA';
-var map = new Datamap({
+var map= new Datamap({
 	    element: document.getElementById('datamap'),
 	    projection: 'mercator', // big world map
 	    // countries don't listed in dataset will be painted with this color
@@ -259,7 +259,7 @@ var map = new Datamap({
 			   $("#country_income").css({"font-size":"25px","color":"white", "float" : "right"});
 			$("#oil_producer").text((gdps[geography.id]['oils'] === 'Oil Producing' ) ? 'True' : 'False');
 			   $("#oil_producer").css({"font-size":"25px","color":"#2196F3", "float" : "right"});				
-			update_highlight(this, highlight,geography.id);
+			update_highlight(datamap, highlight,geography.id);
 			data = imf[geography.id];
 			call_dc(data);
 			
