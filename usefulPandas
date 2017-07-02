@@ -9,3 +9,12 @@ newdf = pd.concat([df1, df2])
 
 # replace NaN 
 newdf = olddf.fillna(0)
+
+# read from csv to pandas
+df = pd.read_csv('filename.csv')
+
+# convert all string in column to lower AND to a variable
+newCol = df['Col Name'].str.lower()
+# assign newCol back to df
+df['Col Name'] = newCol
+
