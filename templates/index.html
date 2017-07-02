@@ -269,11 +269,7 @@ var map = new Datamap({
 	  }
 	});
     
-function update_highlight(map, old, id){
-	
-	map.updateChoropleth({old: '#F5F5F5' }, {reset: true});	
-	map.updateChoropleth({id: 'red' }, {reset: true});  
-}
+
 /* Parse JSON file, create charts, draw markers on map */
 //d3.json(data, function (error, data) {
 function call_dc(data){
