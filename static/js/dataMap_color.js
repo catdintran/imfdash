@@ -2,7 +2,7 @@ var countries = {'GRL': {'gross domestic product, current prices': 'N/A', 'name'
 
 function update_highlight(map, old , newId){
     console.log(typeof map);
-    console.log(typeof old);
+    console.log(typeof {old : '#F5F5F5'});
     console.log(typeof newId);
     map.updateChoropleth({old: '#F5F5F5'}, {reset: true});   
     map.updateChoropleth({newId : 'brown'}, {reset: true});   
