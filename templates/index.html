@@ -259,7 +259,7 @@ var map = new Datamap({
 			   $("#country_income").css({"font-size":"25px","color":"white", "float" : "right"});
 			$("#oil_producer").text((gdps[geography.id]['oils'] === 'Oil Producing' ) ? 'True' : 'False');
 			   $("#oil_producer").css({"font-size":"25px","color":"#2196F3", "float" : "right"});				
-			
+			update_highlight(geography.id);
 			data = imf[geography.id];
 			call_dc(data);
 			
@@ -270,7 +270,9 @@ var map = new Datamap({
 	});
     
 function update_highlight(id){
-	map.updateChoropleth({highlight: '#F5F5F5' }, {reset: true});
+	
+	map.updateChoropleth({id: '#F5F5F5' }, {reset: true});
+	alert(id);
 	highlight = id;
 	map.updateChoropleth({highlight: 'red' }, {reset: true});  
 }
