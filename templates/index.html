@@ -251,7 +251,7 @@ var map= new Datamap({
 			var gdps = countries;
 			$('#countryName-container').text(geography.properties.name);
 			   $('#countryName-container').css({"font-size":"25px","color":"#fff", "text-align": "center"});
-			   $('#countryName-container').data('code',geography.id);
+			   $('#countryName-container').data('ISO3',geography.id);
 			$("#gdp").text('$ ' +gdps[geography.id]['gross domestic product, current prices']);
 			   $("#gdp").css({"font-size":"25px","color":"#66BB6A", "float" : "right"});
 			$("#ppp").text('$ ' +gdps[geography.id]['gross domestic product based on purchasing-power-parity (ppp) valuation of country gdp']);
