@@ -61,7 +61,7 @@ li a:hover:not(.active) {
 	
     <div class="row" id="control-row">
 	 <div class="col-xs-6 col-md-6">
-	    
+		 <!-- 1st row, nested 1st -->
 		 <div class="col-xs-3 col-md-6">      		
 			<text style="font-weight:lighter;">General Government Finance</text>
 			<div id="gov_finance" class="dc-chart"></div>
@@ -69,7 +69,18 @@ li a:hover:not(.active) {
 		 <div class="col-xs-3 col-md-4">      		
 			<text style="font-weight:lighter;">Saving+Invest</text>
 			<div id="investment" class="dc-chart"></div>
-		 </div>     
+		 </div>
+		 <!-- 1st row, nested 2nd -->
+		 <div class="row">
+			 <div class="col-xs-3 col-md-3">
+					<text style="font-weight:lighter;">GDP Current</text>	    
+					<div class="dc-chart" id="gdp_bar"></div>
+			  </div>
+			  <div class="col-xs-3 col-md-3">
+					<text style="font-weight:lighter;">Unemployment rate</text>	    
+					<div class="dc-chart" id="population_bar"></div>
+			  </div> 
+		 </div>	 
 	 </div>     
     		<!-- Map -->  
     	<div class="col-xs-6 col-md-6" >
@@ -89,14 +100,7 @@ li a:hover:not(.active) {
    </div>
 					<!-- 2nd row -->  
   <div class="row">
-	  <div class="col-xs-3 col-md-3">
-			<text style="font-weight:lighter;">GDP Current</text>	    
-			<div class="dc-chart" id="gdp_bar"></div>
-	  </div>
-	  <div class="col-xs-3 col-md-3">
-			<text style="font-weight:lighter;">Unemployment rate</text>	    
-			<div class="dc-chart" id="population_bar"></div>
-	  </div>
+	 
 	  
        <!-- countryName -->
 		<div  class="col-xs-6">
