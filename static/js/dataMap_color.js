@@ -6,9 +6,10 @@ $('#countryName-container').bind("DOMSubtreeModified",function(){
     var newMap ={};
     newMap[oldId]= '#F5F5F5';
     newMap[newId]= 'brown';
-    console.log(newMap);
-    map.updateChoropleth(newMap, {reset: false});
-    oldId = newId;
+    if(Object.keys(newMap).lenght  == 2){
+       map.updateChoropleth(newMap, {reset: false});
+       oldId = newId;
+    }
     console.log(oldId);
 })    
 
