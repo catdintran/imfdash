@@ -25,7 +25,8 @@ As any others front-end products, HTML/CSS are the backbone to position and to s
 To simplify code, data has been coverted to json format and stored as var in 2 .js files:  ~/static/js/imf_anal.js, ~/static/js/dataMap_color.js
 
 Format of the json file look like this:
-![Data format screenShot](img/econ2017-dataFormat.PNG)](https://catdintran.github.io/imfdash)
+
+![Data format screenShot](img/econ2017-dataFormat.PNG)]
 
 Meaning: country codes 'DZA' in 'year' : 2000, has all these key elements to generate dc.js statistics graphs.
 
