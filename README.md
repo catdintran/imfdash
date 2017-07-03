@@ -1,5 +1,6 @@
 # IMF World Map Data
-Using DataMaps, Crossfilter, dc.js, d3.js, Bootstrap
+Using DataMaps, Crossfilter, dc.js, d3.js, Bootstrap.
+This project is built on top of user [Austin Lyons](https://github.com/austinlyons/dcjs-leaflet-untappd)'s Beer Drinking project. He has a better explanations of how things work. 
 
 # Demo
 Try out the demo [here](http://35.196.64.15/). NOTE: This site will ONLY be active until 07 JUN 2018.
@@ -32,159 +33,70 @@ Meaning: country codes 'DZA' in 'year' : 2000, has all these key elements to gen
 
 
 
-## HTML & CSS
-The .css files can be found in the `css` folder. In addition to the
-Bootstrap stylesheet, dc and leaflet come with their own default style
-sheets that we'll include as well. Finally, we have our own CSS file
-`main.css` for the little styling tweaks we'll make.
-
-Let's start writing some HTML to include those CSS files. In
-`index.html` we add the following:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>dc.js example - Untappd Data Visualization</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/dc.css">
-    <link rel="stylesheet" type="text/css" href="css/leaflet.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-```
-
-Next, we'll add all of the HTML scaffolding, adhering to the Bootstrap
-[grid system](http://getbootstrap.com/css/#grid). 
-
-### Tiny Bootstrap Grid Tutorial
-> Skip this if you already grok Bootstrap
-
-If you've never seen Bootstrap before, here's a brief summary of how it's grid layouts work.
-
-In this "grid" way of doing things, we simply think of positioning our elements
-one row at a time, where each row can be divvied up into 12 columns. 
-So if you want to put 3 equally spaced items in a row, you just give
-each item a width of 4 columns.
-
-```html
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      Item 1
-    </div>
-    <div class="col-md-4">
-      Item 2
-    </div>
-    <div class="col-md-4">
-      Item 3
-    </div>
-  </div>
-</div>
-```
-
-You can think of the grid system as a spreadsheet, so the HTML we just wrote 
-would look like:
-![Spreadsheet grid layout](img/grid-single-row.png)
-
-
-Why col-md-4 instead of col-4? What's the "md" all about? It has to do with
-responsive layouts, and "md" stands for medium. Check [the docs](http://getbootstrap.com/examples/grid/)
-for more info.
-> Here ends the tiny grid tutorial. 
-
-### HTML Scaffolding
-
-To achieve our final layout we will create four rows. The first is for our
-header, the next is the row of pie charts and the map, the third row is
-for the bar charts, and the final row is for the table. In each row 
-we space things accordingly by choosing particular column widths. 
-
-For illustration, this photo (forgive the lines that aren't at right
-angles) shows where the rows are separated using teal lines and the
-column widths using gray lines. As you can see, the second row uses
-2 column widths for each pie chart and the remaining 6 columns for the map.
- 
-![Rows and columns](img/rows-and-columns.png)
-
-In the "spreadsheet" analogy, this layout would look like this:
-![Spreadsheet layout](img/grid-visualization-layout.png)
-
-Below is all of the scaffolding HTML code. Notice the row and column spacing.
-(There's a bit more in here too related to charts that we'll get into later.)
+## HTML & Layout
 
 ```html
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12 dc-data-count dc-chart" id="data-count">
-      <h2>Beer History
-        <small>
-          <span class="filter-count"></span> selected out of <span class="total-count"></span> records |
-           <a id="all" href="#">Reset All</a>
-          </span>
-        </small>
-      </h1>
-    </div>
-  </div>
+  <!-- row 1 -->
   <div class="row" id="control-row">
-    <div class="col-xs-2 pie-chart">
-      <h4>Year <small><a id="year">reset</a></small></h4>
-      <div class="dc-chart" id="chart-ring-year"></div>
-    </div>
-    <div class="col-xs-2 pie-chart">
-      <h4>Month <small><a id="month" href="#">reset</a></small></h4>
-      <div class="dc-chart" id="chart-ring-month"></div>
-    </div>
-    <div class="col-xs-2 pie-chart">
-      <h4>Day <small><a id="day">reset</a></small></h4>
-      <div id="chart-ring-day" class="dc-chart"></div>
-    </div>
-    <div class="col-xs-6">
-      <h4>Breweries</h4>
-      <div id="map"></div>
-    </div>
+	 <div class="col-xs-6 col-md-6">	    
+            <!-- Graph 1 --> 
+             <div class="col-xs-3 col-md-6">      		
+
+             </div>	             
+              <!-- Graph 2 --> 
+             <div class="col-xs-3 col-md-4">      		
+            
+             </div>     
+	 </div>     
+    		<!-- Map -->  
+    <div class="col-xs-6 col-md-6" >	               
+    </div>	    
+	      
   </div>
+  <!-- row 2 -->
   <div class="row">
-    <div class="col-xs-6 col-md-3">
-      <div class="dc-chart" id="chart-rating-count"></div>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <div class="dc-chart" id="chart-community-rating-count"></div>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <div class="dc-chart" id="chart-abv-count"></div>
-    </div>
-    <div class="col-xs-6 col-md-3">
-      <div class="dc-chart" id="chart-ibu-count"></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <table class="table table-bordered table-striped" id="data-table">
-        <thead>
-          <tr class="header">
-            <th>Brewery</th>
-            <th>Beer</th>
-            <th>Style</th>
-            <th>My Rating</th>
-            <th>Community Rating</th>
-            <th>ABV %</th>
-            <th>IBU</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
-</div>
+             <!-- Graph 3 -->
+              <div class="col-xs-3 col-md-3">		
+
+              </div>
+              <!-- Graph 4 -->
+              <div class="col-xs-3 col-md-3">
+
+              </div>
+	  
+      <!-- countryName -->
+	  <div  class="col-xs-6">
+			
+	  </div>
+               <!-- Panel 1 -->
+	  <div class="col-sm-3">
+      
+		  <div class="chart-wrapper">
+          
+		  </div>
+		  <div class="chart-stage" style="color:#FFFFFF; background-color: #3F4C59;">         
+		  
+          </div>
+	  </div>
+		    
+	         <!-- Panel 2 -->
+      <div class="col-sm-3">
+      
+		  <div class="chart-wrapper">
+          
+		  </div>
+		  <div class="chart-stage" style="color:#FFFFFF; background-color: #3F4C59;">         
+		  
+          </div>
+	  </div>
+      
+      
+</div> 
 ```
 
 ## JavaScript
-Finally! Time for the interesting parts.
-
-First we include a couple of JavaScript libraries and then start writing
-custom code. I'll skip the map code right now and start with dc.js
-related code.
+Download all external .js libraries to your directory to ensure a stable performance for your webapp.
 
 ```javascript
 <script type="text/javascript" src="js/d3.js"></script>
@@ -192,13 +104,16 @@ related code.
 <script type="text/javascript" src="js/dc.js"></script>
 <script type="text/javascript" src="js/leaflet.js"></script>
 <script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/datamaps.world.min.jss"></script>
 <script type="text/javascript">
 ```
 
-[Underscore](http://underscorejs.org/) is by no means necessary but I wanted to be the first to introduce you to it
-if you've never seen it before. [Go read about it](http://underscorejs.org/). It's very useful.
+## Architecture
+The structure of this webapp can be broken down into 2 parts: the world map && the graphs.
+** The world is generated by built-in data from DataMaps and it is acting as the handler in this webapp. OnClick to a country will return the country's ISO3 code, this code will be pass to dc.js for graphs.
+** The graphs will receive country ISO3 from DataMaps to poll data and project graphs.
 
-### Parsing data
+### DataMaps
 We begin by reading all of the JSON data from `untappd.json` using [`d3.json`](https://github.com/mbostock/d3/wiki/Requests#d3_json).
 Before setting up any of the charting code, we preprocess the data we've
 read so that it's in the format dc.js expects. We convert string
