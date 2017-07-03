@@ -12,9 +12,9 @@ This dashboard is a product of my presentation of my college's data science cour
 
 
 ## Tools
-As any others front-end products, HTML/CSS are the backbone to position and to style the interface. To save time, [Bootstrap] is used to leverage existing stylesheets and methodology.
+As any others front-end products, HTML/CSS are the backbone to position and to style the interface. To save time, [Bootstrap]() is used to leverage existing stylesheets and methodology.
 
-[dc.js] 
+[dc.js]() 
 
 [dc.js](https://dc-js.github.io/dc.js/) is a great JavaScript library
 that we'll use to create interactive charts and a corresponding table. 
