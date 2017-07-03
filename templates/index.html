@@ -218,7 +218,9 @@ li a:hover:not(.active) {
 
 var data;	
 call_dc(imf['USA']);
-	
+
+var oldId = 'USA';
+var newId;
 /* DataMaps */
 var highlight = 'USA';
 var map= new Datamap({
@@ -245,7 +247,7 @@ var map= new Datamap({
 	            datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 	        };
 		datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-		//	update_highlight(geography.id);   
+			newId = geography.id;   
 			var gdps = countries;
 			$('#countryName-container').text(geography.properties.name);
 			   $('#countryName-container').css({"font-size":"25px","color":"#fff", "text-align": "center"});
