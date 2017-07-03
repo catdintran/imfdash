@@ -6,7 +6,7 @@ $('#countryName-container').bind("DOMSubtreeModified",function(){
     var newMap ={};
     newMap[oldId]= '#F5F5F5';
     newMap[newId]= 'brown';
-    if(Object.keys(newMap).lenght  == 2){
+    if(Object.keys(newMap).length  == 2){
        map.updateChoropleth(newMap, {reset: false});
        oldId = newId;
     }
