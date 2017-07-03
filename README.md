@@ -1,18 +1,15 @@
-# Beer I've Been Drinking
-Learn [dc.js](https://dc-js.github.io/dc.js/), [Crossfilter](http://square.github.io/crossfilter/), and [Leaflet](http://leafletjs.com/) by visualizing [my](https://untappd.com/user/austinlyons) [Untappd](http://untappd.com) check-ins
+# IMF World Map Data
+Using DataMaps, Crossfilter, dc.js, d3.js, Bootstrap
 
 # Demo
-Try out the demo [here](https://austinlyons.github.io/dcjs-leaflet-untappd)
+Try out the demo [here](http://35.196.64.15/). NOTE: This site will ONLY be active until 07 JUN 2018.
 
 [![Demo
-screenshot](img/demo.png)](https://austinlyons.github.io/dcjs-leaflet-untappd)
+screenshot](img/econ2017-screenshot.PNG)](https://catdintran.github.io/imfdash)
 
 # Tutorial
-Have you ever wished you could make a decent looking web-based data visualization? Maybe you're a UI/UX designer who wants to get beyond static wireframes, a graduate student who wants to impress your advising professor and research team, or an MBA who wants to go beyond Excel charts. This tutorial is for you.
+This dashboard is a product of my presentation of my college's data science course. This tutorial will provide steps to recreate a similar dashboard, buy you will need to provide your own data to show graphs or clone this to make an identical dashboard.
 
-I assume only rudimentary knowledge of HTML, CSS, and
-JavaScript. We'll start with the HTML & CSS, but if you want to skip down to the fun
-JavaScript stuff go right ahead. 
 
 ## Tools
 We'll use CSS and HTML to position and style the data visualization. 
