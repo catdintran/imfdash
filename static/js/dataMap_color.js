@@ -8,17 +8,10 @@ $('#countryName-container').bind("DOMSubtreeModified",function(){
     newMap[newId]= 'brown';
     console.log(newMap);
     map.updateChoropleth(newMap, {reset: false});
-    oldId = $(this).data('ISO3');
+    oldId = newId;
     console.log(oldId);
 })    
-$('#countryName-container').change(function(){
-    var newMap ={};
-    newMap[oldId]= '#F5F5F5';
-    newMap[newId]= 'brown';
-    map.updateChoropleth(newMap, {reset: false});
-    oldId = $(this).data('ISO3');
-    alert(oldId);
-})
+
 /*
 function update_highlight(map, old , newId){
     var oldObj={};oldObj[old]='#F5F5F5';
