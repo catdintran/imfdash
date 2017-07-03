@@ -14,37 +14,22 @@ This dashboard is a product of my presentation of my college's data science cour
 ## Tools
 As any others front-end products, HTML/CSS are the backbone to position and to style the interface. To save time, [Bootstrap]() is used to leverage existing stylesheets and methodology.
 
-[dc.js]() 
+[dc.js]() is for interactive charts and corresponding table. [d3.js]() is a great data manipulation and graphic tool.
 
-[dc.js](https://dc-js.github.io/dc.js/) is a great JavaScript library
-that we'll use to create interactive charts and a corresponding table. 
-It's built upon [d3](http://d3js.org/) and [crossfilter](http://square.github.io/crossfilter/), 
-helps us to build simple charts quickly, and looks pretty good right out of the box. 
+[crossfilter]() is a data management tool and works well with dc and d3. 
 
-[Leaflet](http://leafletjs.com/) will be used to create an interactive map. 
-Leaflet is easy to use and plays nicely with [Mapbox](https://www.mapbox.com/editor/#style) tiles,
-which are a customizable and fun alternative to using Google Maps.
+[DataMaps]() is a map projection(US-50 states, worlds), built on top of d3. However, it is missing some countries on the map.  
+
 
 ## Data
-The visualization will use my actual Untappd check-in data. I
-downloaded my beer drinking history via the Untappd API and put it into a JSON file
-that you can access [here](untappd.json). 
+To simplify code, data has been coverted to json format and stored as var in 2 .js files:  ~/static/js/imf_anal.js, ~/static/js/dataMap_color.js
 
-![JSON screenshot](img/beer-json.png)
+Format of the json file look like this:
+![Data format screenShot](img/econ2017-dataFormat.PNG)](https://catdintran.github.io/imfdash)
 
-## Try it yourself
-If you want to play with the code as we go, I recommend downloading
-the source code from this GitHub repository, navigating to the directory where the files are
-located, and kicking off Python's SimpleHTTP server so that you can see
-your visualization in your own browser at http://localhost:8000 (If
-this is new for you, see [this
-link](https://github.com/lmccart/itp-creative-js/wiki/SimpleHTTPServer) for a bit more information). 
+Meaning: country codes 'DZA' in 'year' : 2000, has all these key elements to generate dc.js statistics graphs.
 
-> In the terminal, navigate to the correct location and run the python server
-![Terminal screenshot](img/navigate-and-serve.png)
 
-> The demo will then be accessible in a browser at localhost:8000
-![Running on localhost](img/running-on-localhost.png)
 
 ## HTML & CSS
 The .css files can be found in the `css` folder. In addition to the
