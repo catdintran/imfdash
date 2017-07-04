@@ -18,3 +18,16 @@ newCol = df['Col Name'].str.lower()
 # assign newCol back to df
 df['Col Name'] = newCol
 
+[country]                                             [neighbors]
+Abkhazia[3]                                             Georgia Russia Turkey (M) Ukraine (M)
+Akrotiri and Dhekelia[6] (United Kingdom)               Cyprus Egypt (M) Lebanon (M) Turkish Republic ...
+...
+
+#normalize column -> lowercase()
+data['country'] = data['country'].str.lower()
+
+#replace string within brackets all df
+data= data.replace([r"\[([A-Za-z0-9_]+)\]"], [''], regex=True)
+
+#replace string whitn parenthesis in 1 column
+data['country'] = data['country'].replace([r"\(([^\)]+)\)"], [''], regex=True)
