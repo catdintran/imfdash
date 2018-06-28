@@ -3,7 +3,7 @@ Using DataMaps, Crossfilter, dc.js, d3.js, Bootstrap.
 This project is built on top of user [Austin Lyons](https://github.com/austinlyons/dcjs-leaflet-untappd)'s Beer Drinking project. He has a better explanations of how things work. 
 
 # Demo
-Try out the demo [here](http://35.196.64.15/). NOTE: This site will ONLY be active until 07 JUN 2018.
+Try out the demo [here](https://imfdash.000webhostapp.com)
 
 [![Demo
 screenshot](img/econ2017-screenshot.PNG)](https://catdintran.github.io/imfdash)
